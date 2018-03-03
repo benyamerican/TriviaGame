@@ -115,23 +115,21 @@ var interval = setInterval(timeDown, 1000);
 //////////PRACTICE///////////////////////////PRACTICE/////////////////
 //////////PRACTICE///////////////////////////PRACTICE/////////////////
 //////////PRACTICE///////////////////////////PRACTICE/////////////////
-
-
 var arrayPractice = ["Q1","Q2","Q3", "Q4"];//,"D","E","F","G"
 var timerPractice = 3.0;
 console.log(arrayPractice);
-
- 
-
-
+/////////////splicer//////////////
+var randomNumPractice;
 function splicePractice(){
-    var randomNumPractice = Math.floor(Math.random() * arrayPractice.length) 
+    randomNumPractice = Math.floor(Math.random() * arrayPractice.length) 
     
-    console.log(arrayPractice[randomNumPractice] + " Will be displayed");  
+    console.log(arrayPractice[randomNumPractice] + " Will be displayed ");  
    
     arrayPractice.splice(randomNumPractice,1);  
     
 }
+splicePractice();
+
 /////////////////////////////////
 ////////Practice Reset Func///////
 function resetPractice()
@@ -143,35 +141,35 @@ function resetPractice()
     intervalPractice = setInterval(timeDownPractice, 1000);
 }
 /////////////////Logic of PracticeArray/////////////////
-
-
-
 function arrayLogic(){  
    
     if(arrayPractice.length > 0){
-        timerPractice = 3;
         splicePractice();
-        $("#timer").text("This timer " + timerPractice + " is just to stress you out ");
+        timerPractice = 3;
+       
+        // $("#timer").text("This timer " + timerPractice + " is just to stress you out ");
         // console.log(arrayPractice);
-}else{
-    timerPractice = 3;
-    console.log("All Questions Are Answered")  
-}
+}else{}
 }
 /////////////////////////Timer Practice/////////////
-function timeDownPractice() {   
+function timeDownPractice() { 
+    
+    
     if ( timerPractice > 0){
         timerPractice--;   
         console.log(timerPractice);
             
     } else {
+     
         arrayLogic();
       clearInterval(intervalPractice);
 
-                            if(arrayPractice.length > 0){
+                            if(arrayPractice.length > 0)
+                            {
                                 resetPractice();
-                            }
-                            else{console.log("End of The Game")}     
+                            }else{
+                                 console.log("End of The Game")
+                                }     
     }
 }
 var intervalPractice = setInterval(timeDownPractice, 1000);
@@ -181,7 +179,6 @@ $("#start").on("click", function()
  {
  arrayLogic();
 });
- 
 /////////////////////////////////////////
 
 });
