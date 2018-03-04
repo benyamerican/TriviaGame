@@ -1,187 +1,155 @@
+
 $(document).ready(function() {
 
-/*
+
 //Store Questions Answers and the answers value ________________
-var questions = {
-    question0: {
-        answer01: false,
-        answer02: false,
-        answer03: true,
-        answer04: false
-    },
-    question1: {
+var questions = 
+[
+    {question0: [
+        {answer01: false},
+        {answer02: false},
+        {answer03: true},
+        {answer04: false},
+    ]},
+    {question1: {
         answer11: true,
         answer12: false,
         answer13: false,
         answer14: false
-    },
-    question2: {
+    }},
+    {question2: {
         answer21: true,
         answer22: false,
         answer23: false,
         answer24: false
-    },
-    question3: {
+    }},
+    {question3: {
         answer31: true,
         answer32: false,
         answer33: false,
         answer34: false
+    }}
+];
+//////Variables////
+timer= 5;
+//Generate a random number 
+let randomNumber = Math.floor(Math.random() * questions.length);
+//Generate a random questions 
+
+
+     ///////////////////Splicer FUnction///////
+     function splicer(){ 
+        let randomNumber = Math.floor(Math.random() * questions.length);
+        let randomQuestion = questions[randomNumber];
+        var displayedQuestion = Object.keys(randomQuestion);
+        
+        $("#question").text(displayedQuestion);
+        // console.log(randomQuestion);
+        questions.splice(randomNumber,1);     
+
+        console.log(questions.length + " Question is lef in the array");
+
     }
-}
-var callingAQuestion = function(){
-    //Gets an array of all possible questions from the questions object
-    var arrayOfQuestions = Object.keys(questions);
-    
-
-    //Generate a random number 
-    var randNumber = Math.floor(Math.random() * arrayOfQuestions.length)
-    // console.log(randNumber)
-
-    //gets object value of the random question
-    var answersObj = questions[arrayOfQuestions[randNumber]];
-    
-    //gets an array of all keys of the answers object
-    var arrayOfAnswers = Object.keys(answersObj);
-    
-    // will store the correct answer
-    var correctAnswers;
-
-    //loop through the answers to get the correct answer
-    for (i = 0; i < arrayOfAnswers.length; i++){
-        if (answersObj[arrayOfAnswers[i]] === true){
-            correctAnswers = arrayOfAnswers[i]
-         
-        }
-    }
-
-
-          //  splice function -----------------------------
-    // ====================================================
-    ////////////////////////////////////////////////////////
-
-function splice()
-{
-    
-    arrayOfQuestions = arrayOfQuestions.splice(randNumber,1);
-
-}
-// console.log(arrayOfQuestions[randNumber]);
-// console.log(correctAnswers);
-/////////////Array logic////////////
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////
-// ____________________________________________
-// ======================================================
-
-}
-// Timing Function  ___________________
-////////////////////////////////////////////////////
-var time = 3.0;
-function timeDown() {   
-    if ( time > 0){
-        time--;     
-        $("#timer").text("This timer " + time + " is just to stress you out ");
-    } else {
-      clearInterval(interval);
-    //   callingAQuestion();
-      $("#timer").text("This timer " + time + " is just to stress you out ");
-      arrayLogic()
-    }
-}
-
-var interval = setInterval(timeDown, 1000);
-
-*/
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-var arrayPractice = ["Q1","Q2","Q3", "Q4"];//,"D","E","F","G"
-var timerPractice = 3.0;
-console.log(arrayPractice);
-/////////////splicer//////////////
-var randomNumPractice;
-function splicePractice(){
-    randomNumPractice = Math.floor(Math.random() * arrayPractice.length) 
-    
-    console.log(arrayPractice[randomNumPractice] + " Will be displayed ");  
    
-    arrayPractice.splice(randomNumPractice,1);  
     
-}
-splicePractice();
-
-/////////////////////////////////
-////////Practice Reset Func///////
-function resetPractice()
-{
-    timerPractice = 3.0;
-    // console.log("This IS RESET FUNCTION"); 
-    
-    timeDownPractice();
-    intervalPractice = setInterval(timeDownPractice, 1000);
-}
+///////////////End of the splicer Function/////
 /////////////////Logic of PracticeArray/////////////////
-function arrayLogic(){  
-   
-    if(arrayPractice.length > 0){
-        splicePractice();
-        timerPractice = 3;
+function logicFunction(){  
+       if(questions.length > 0){
+        splicer();
+        timer= 5;
        
         // $("#timer").text("This timer " + timerPractice + " is just to stress you out ");
         // console.log(arrayPractice);
-}else{}
+}else{$("#question").text("The End");}
 }
-/////////////////////////Timer Practice/////////////
-function timeDownPractice() { 
+///////////////////////////////////////
+/////////////////TIMER/////////////////////
+function timeDown() { 
     
     
-    if ( timerPractice > 0){
-        timerPractice--;   
-        console.log(timerPractice);
+    if ( timer > 0){
+        timer--;   
+       // console.log(timer);
+       $("#timer").text(`Hurry Up ! ${timer}`);
             
     } else {
      
-        arrayLogic();
-      clearInterval(intervalPractice);
+        logicFunction();
+      clearInterval(interval);
 
-                            if(arrayPractice.length > 0)
+                            if(questions.length > 0)
                             {
-                                resetPractice();
+                                reset();
                             }else{
-                                 console.log("End of The Game")
+                                $("#question").text("The End");
                                 }     
     }
 }
-var intervalPractice = setInterval(timeDownPractice, 1000);
+var interval = setInterval(timeDown, 1000);
 ///////////////////////////////////////////
-///////////////on click function /////////
-$("#start").on("click", function()
- {
- arrayLogic();
-});
-/////////////////////////////////////////
+////////////////////////Reset/////////////////
+//////// Reset Func///////
+function reset()
+{
+    timer = 5.0;
+ //console.log("This IS RESET FUNCTION"); 
+    
+    timeDown();
+    interval = setInterval(timeDown, 1000);
+}
+
+////////////////////////////////////////////
+
+
+
+function callingAQuestion()
+{
+
+//Gets an array of all possible questions from the questions object
+// var arrayOfQuestions = Object.keys(questions);
+  // console.log(randNumber)
+
+
+
+
+
+
+
+
+  ///displaying a random question on html page
+ 
+  //gets object value of the random question
+  var answersObj = questions[arrayOfQuestions[randomNumber]];
+  //gets an array of all keys of the answers object
+  var arrayOfAnswers = Object.keys(answersObj);
+  //displaying the answers on html page
+  $("#index0").text(arrayOfAnswers[0]);
+  $("#index1").text(arrayOfAnswers[1]);
+  $("#index2").text(arrayOfAnswers[2]);
+  $("#index3").text(arrayOfAnswers[3]);
+  // will store the correct answer
+  var correctAnswers;
+  //loop through the answers to get the correct answer <script src="assets/javascript/app.js"></script>
+  for (i = 0; i < arrayOfAnswers.length; i++){
+      if (answersObj[arrayOfAnswers[i]] === true){
+          correctAnswers = arrayOfAnswers[i]
+      }}
+ 
+}
+
+
+
+
+      ///////////////////////////////////////////
+    
+    ///////////////on click function /////////
+     $("#start").on("click", function()
+      {
+        logicFunction()
+    });
+////////////////////////////////////////
 
 });
-
 
 
