@@ -1,7 +1,7 @@
-/*
+
 $(document).ready(function() {
 
-
+/*
    //////////PRACTICE///////////////////////////PRACTICE/////////////////
 //////////PRACTICE///////////////////////////PRACTICE/////////////////
 //////////PRACTICE///////////////////////////PRACTICE/////////////////
@@ -87,9 +87,102 @@ $("#start").on("click", function()
 });
 /////////////////////////////////////////
     /////////////////////////////////////////
-    
-    });
-    
-    
-    
     */
+////////////Arraysand stuff ////////////
+var questions = 
+[
+    {question: " Question 1 as an string",
+    answers :{
+        
+        " Answer to 1.1 " : false,
+    " Answer to 1.2 " : false,
+    "  Answer to 1.3 " : true,
+    "   Answer to 1.4 " : false,
+    
+        
+
+    }
+},
+{question: " Question 2 as an string",
+answers :{
+    
+    " Answer to 2.1 " : false,
+    " Answer to 2.2 " : false,
+    "  Answer to 2.3 " : false,
+    "   Answer to 2.4 " : true,
+    
+    
+
+}},
+{question: " Question 3 as an string",
+answers :{
+    
+    " Answer to 3.1 " : false,
+    " Answer to 3.2 " : true,
+    "  Answer to 3.3 " : false,
+    "   Answer to 3.4 " : true,
+    
+    
+
+}},
+{question: " Question 4 as an string",
+answers :{
+    
+    " Answer to 4.1 " : true,
+    " Answer to 4.2 " : false,
+    "  Answer to 4.3 " : false,
+    "   Answer to 4.4 " : false,
+    
+
+}
+}
+    
+    
+        
+      ];
+      //////////////////////////////
+    //////////////////for loop for right answer//////
+
+
+var randNumb = Math.floor(Math.random() * questions.length)
+console.log(questions.length);
+console.log(randNumb);
+
+
+
+//loop through the answers to get the correct answer <script src="assets/javascript/app.js"></script>
+////////////////////////////////////////////////////////////////////////////////////////
+var correctAnswers;
+var wrongAnswers;
+var answersValues = Object.values(questions[randNumb].answers);
+console.log(answersValues);
+
+for (i = 0; i < answersValues.length; i++){
+  if (answersValues[i] === true){
+      correctAnswers = answersValues[i];
+      console.log(correctAnswers)}
+      else{}
+    }
+/////////////////////on click functions ////////////////
+///////////////////ON click for the right answer////////
+    $("#index0").on("click", function(){
+    console.log("Clicking on answer 1 is working")
+    });
+    $("#index1").on("click", function(){
+    console.log("Clicking on answer 2 is working")
+    });
+    $("#index2").on("click", function(){
+    console.log("Clicking on answer  3 is working")
+    });
+    $("#index3").on("click", function(){
+    console.log("Clicking on answer 4 is working")
+    });
+////////////////////////////////////////
+//////////////////////////////////////////////////////
+    });
+
+
+    
+    
+    
+    
