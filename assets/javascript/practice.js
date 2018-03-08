@@ -88,97 +88,103 @@ $("#start").on("click", function()
 /////////////////////////////////////////
     /////////////////////////////////////////
     */
-////////////Arraysand stuff ////////////
+////////////Arrays and stuff ////////////
 var questions = 
-[
-    {question: " Question 1 as an string",
-    answers :{
-        
-        " Answer to 1.1 " : false,
-    " Answer to 1.2 " : false,
-    "  Answer to 1.3 " : true,
-    "   Answer to 1.4 " : false,
+[ 
+    ////////array of Q1//////////////
+    [
+        " Question 1 as a string",
+    [ " Answer to 1.1 " , false],
+    [ " Answer to 1.2 " , false],
+    [ " Answer to 1.3 " , false],
+    [ " Answer to 1.4 " , false],
+    ],
+        ////////array of Q2//////////////
+        [
+            " Question 2 as a string",
+        [ " Answer to 2.1 " , false],
+        [ " Answer to 2.2 " , false],
+        [ " Answer to 2.3 " , false],
+        [ " Answer to 2.4 " , false],
+        ],
+            ////////array of Q3//////////////
+    [
+        " Question 3 as a string",
+    [ " Answer to 3.1 " , false],
+    [ " Answer to 3.2 " , false],
+    [ " Answer to 3.3 " , false],
+    [ " Answer to 3.4 " , false],
+    ],
+        ////////array of Q4//////////////
+        [
+            " Question 4 as a string",
+        [ " Answer to 4.1 " , false],
+        [ " Answer to 4.2 " , false],
+        [ " Answer to 4.3 " , false],
+        [ " Answer to 4.4 " , false],
+        ]
+     
+        ];
+           ////////////////Generate a Random number////////
+let x = questions.length;
+function randomFunc(x){
+    let randNumb = Math.floor(Math.random() * x) ;
+    return randNumb
+};
+console.log(randomFunc(0));
+       
+        function splicer(){
+      randNumb = Math.floor(Math.random() * questions.length) ;
     
-        
-
-    }
-},
-{question: " Question 2 as an string",
-answers :{
-    
-    " Answer to 2.1 " : false,
-    " Answer to 2.2 " : false,
-    "  Answer to 2.3 " : false,
-    "   Answer to 2.4 " : true,
-    
-    
-
-}},
-{question: " Question 3 as an string",
-answers :{
-    
-    " Answer to 3.1 " : false,
-    " Answer to 3.2 " : true,
-    "  Answer to 3.3 " : false,
-    "   Answer to 3.4 " : true,
-    
-    
-
-}},
-{question: " Question 4 as an string",
-answers :{
-    
-    " Answer to 4.1 " : true,
-    " Answer to 4.2 " : false,
-    "  Answer to 4.3 " : false,
-    "   Answer to 4.4 " : false,
-    
-
-}
-}
-    
-    
-        
-      ];
-      //////////////////////////////
-    //////////////////for loop for right answer//////
-
-
-var randNumb = Math.floor(Math.random() * questions.length)
-console.log(questions.length);
-console.log(randNumb);
-
-
-
-//loop through the answers to get the correct answer <script src="assets/javascript/app.js"></script>
-////////////////////////////////////////////////////////////////////////////////////////
-var correctAnswers;
-var wrongAnswers;
-var answersValues = Object.values(questions[randNumb].answers);
-console.log(answersValues);
-
-for (i = 0; i < answersValues.length; i++){
-  if (answersValues[i] === true){
-      correctAnswers = answersValues[i];
-      console.log(correctAnswers)}
-      else{}
-    }
-/////////////////////on click functions ////////////////
-///////////////////ON click for the right answer////////
-    $("#index0").on("click", function(){
-    console.log("Clicking on answer 1 is working")
-    });
-    $("#index1").on("click", function(){
-    console.log("Clicking on answer 2 is working")
-    });
-    $("#index2").on("click", function(){
-    console.log("Clicking on answer  3 is working")
-    });
-    $("#index3").on("click", function(){
-    console.log("Clicking on answer 4 is working")
-    });
-////////////////////////////////////////
+       ////////////////Generate a Random Question////////       
+       let pickRandomQuestion = questions[randNumb];
+              ////////////////display question on html//////////////////////////
+       $("#question").text(pickRandomQuestion[0]);
+       ///////////display answers on html////////
+       $("#index0").text(pickRandomQuestion[1][0]);
+       $("#index1").text(pickRandomQuestion[2][0]);
+       $("#index2").text(pickRandomQuestion[3][0]);
+       $("#index3").text(pickRandomQuestion[4][0]); 
 //////////////////////////////////////////////////////
+
+
+if (questions.length > 1){
+    questions.splice(randNumb,1);
+    console.log(pickRandomQuestion[0]);
+    console.log(questions.length);
+
+                  ////////////////display question on html//////////////////////////
+                  $("#question").text(pickRandomQuestion[0]);
+                  ///////////display answers on html////////
+                  $("#index0").text(pickRandomQuestion[1][0]);
+                  $("#index1").text(pickRandomQuestion[2][0]);
+                  $("#index2").text(pickRandomQuestion[3][0]);
+                  $("#index3").text(pickRandomQuestion[4][0]); 
+           //////////////////////////////////////////////////////
+
+
+
+   
+   
+
+}
+else {
+
+    $("body").html("DONE")
+     
+
+ 
+   
+    }
+}
+
+///////OnClick///////////////////
+$("#start").on("click", function()
+{
+splicer();
+});
+
+/////////////////////////////////
     });
 
 
