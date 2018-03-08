@@ -3,101 +3,78 @@ $(document).ready(function() {
 
 
 //Store Questions Answers and the answers value ________________
+////////////Arrays and stuff ////////////
 var questions = 
-[
-    {question: " Question 1 as a string",
-    answers :{
-        
-        " Answer to 1.1 " : true,
-    " Answer to 1.2 " : false,
-    "  Answer to 1.3 " : false,
-    "   Answer to 1.4 " : false,
-    
-        
+[ 
+    ////////array of Q1//////////////
+    [
+        " Question 1 as a string",
+    [ " Answer to 1.1 " , false],
+    [ " Answer to 1.2 " , false],
+    [ " Answer to 1.3 " , false],
+    [ " Answer to 1.4 " , false],
+    ],
+        ////////array of Q2//////////////
+        [
+            " Question 2 as a string",
+        [ " Answer to 2.1 " , false],
+        [ " Answer to 2.2 " , false],
+        [ " Answer to 2.3 " , false],
+        [ " Answer to 2.4 " , false],
+        ],
+            ////////array of Q3//////////////
+    [
+        " Question 3 as a string",
+    [ " Answer to 3.1 " , false],
+    [ " Answer to 3.2 " , false],
+    [ " Answer to 3.3 " , false],
+    [ " Answer to 3.4 " , false],
+    ],
+        ////////array of Q4//////////////
+        [
+            " Question 4 as a string",
+        [ " Answer to 4.1 " , false],
+        [ " Answer to 4.2 " , false],
+        [ " Answer to 4.3 " , false],
+        [ " Answer to 4.4 " , false],
+        ]
+     
+        ];
+           ////////////////Generate a Random number////////
+           var randNumb = Math.floor(Math.random() * questions.length);
 
-    }
-},
-{question: " Question 2 as a string",
-answers :{
-    
-    " Answer to 2.1 " : true,
-    " Answer to 2.2 " : false,
-    "  Answer to 2.3 " : true,
-    "   Answer to 2.4 " : false,
-    
-    
 
-}},
-{question: " Question 3 as a string",
-answers :{
-    
-    " Answer to 3.1 " : false,
-    " Answer to 3.2 " : true,
-    "  Answer to 3.3 " : false,
-    "   Answer to 3.4 " : false,
-    
-    
+//////////////////////SUBTRACTING 1 from Question array Length////
+function splicer(){
+randNumb = Math.floor(Math.random() * questions.length);
 
-}},
-{question: " Question 4 as a string",
-answers :{
-    
-    " Answer to 4.1 " : true,
-    " Answer to 4.2 " : false,
-    "  Answer to 4.3 " : false,
-    "   Answer to 4.4 " : false,
-    
-
+if(questions.length > 0){
+    var pickRandomQuestion = questions[randNumb][0];  
+    var pickRelatedAnswer = questions[randNumb];  
+    questions.splice(randNumb,1);
+    console.log(pickRelatedAnswer);
+    ////////////////display question on html//////////////////////////
+$("#question").text(pickRandomQuestion);
+///////////display answers on html////////
+$("#index0").text(pickRelatedAnswer[0]);
+$("#index1").text(pickRelatedAnswer[1]);
+$("#index2").text(pickRelatedAnswer[2]);
+$("#index3").text(pickRelatedAnswer[3]); 
+//////////////////////////////////////////////////////
 }
+else{
+    $("body").empty();
+  
+    ////////////////display question on html//////////////////////////
+// $("#question").html("DONE");
+// $("#index0").html("Score");
+// $("#index1").html("Correct Answer");
+// $("#index2").html("Wrong Answer");
+// $("#index3").html("Skipped"); 
+//////////////////////////////////////////////////////
+};
+;
 }
-    
-    
-        
-      ];
-      ////////////////////Var and stuff/////////
-      var correctAnswers;
-      var wrongAnswers;
-      timer= 5;
-/////////////////////////////////////////////////////
-      
-
-      
-
-    ///////////////////Splicer FUnction///////
-     function splicer(){ 
-        let randomNumber = Math.floor(Math.random() * questions.length);
-        var displayedQuestion = questions[randomNumber].question;   
-      //  console.log(displayedQuestion);
-         var displayAnswers = Object.keys(questions[randomNumber].answers);
-       /////// displaying the answers on html page
-         $("#index0").text(displayAnswers[0]);
-         $("#index1").text(displayAnswers[1]);
-         $("#index2").text(displayAnswers[2]);
-         $("#index3").text(displayAnswers[3]); 
-
-        $("#question").text(displayedQuestion);
-        // console.log(randomQuestion);
-        questions.splice(randomNumber,1);  
-        
-              //////////////////////////////////for loop to find the correct ans////
-// var answersValues = Object.values(questions[randomNumber].answers);
-// console.log(answersValues);
-// function rightWrongAns(){
-// for (i = 0; i < answersValues.length; i++){
-//     if (answersValues[i] === true){
-//         correctAnswers = answersValues[i];
-//         correctAnswers = "THis is so  true"
-//         console.log(correctAnswers)}
-//         else if (answersValues[i] !== true)
-//         {
-//             console.log("So Wrong");
-//         }
-//     }
-}
-    
-   
-    
-///////////////End of the splicer Function/////
 /////////////////Logic of PracticeArray/////////////////
 function logicFunction(){  
        if(questions.length > 0){
@@ -175,8 +152,7 @@ function callingAQuestion()
     ///////////////on click function /////////
      $("#start").on("click", function()
       {
-        reset();
-        logicFunction();
+       splicer()
         
     });
     ////////////////////////////////////////////////////////

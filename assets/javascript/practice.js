@@ -2,40 +2,9 @@
 $(document).ready(function() {
 
 /*
-   //////////PRACTICE///////////////////////////PRACTICE/////////////////
 //////////PRACTICE///////////////////////////PRACTICE/////////////////
 //////////PRACTICE///////////////////////////PRACTICE/////////////////
 //////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-//////////PRACTICE///////////////////////////PRACTICE/////////////////
-var arrayPractice = ["Q1","Q2","Q3", "Q4"];//,"D","E","F","G"
-var timerPractice = 3.0;
-console.log(arrayPractice);
-/////////////splicer//////////////
-var randomNumPractice;
-function splicePractice(){
-    randomNumPractice = Math.floor(Math.random() * arrayPractice.length) 
-    
-    console.log(arrayPractice[randomNumPractice] + " Will be displayed ");  
-   
-    arrayPractice.splice(randomNumPractice,1);  
-    
-}
-splicePractice();
-
-/////////////////////////////////
 ////////Practice Reset Func///////
 function resetPractice()
 {
@@ -88,6 +57,7 @@ $("#start").on("click", function()
 /////////////////////////////////////////
     /////////////////////////////////////////
     */
+   
 ////////////Arrays and stuff ////////////
 var questions = 
 [ 
@@ -126,57 +96,45 @@ var questions =
      
         ];
            ////////////////Generate a Random number////////
-let x = questions.length;
-function randomFunc(x){
-    let randNumb = Math.floor(Math.random() * x) ;
-    return randNumb
-};
-console.log(randomFunc(0));
-       
-        function splicer(){
-      randNumb = Math.floor(Math.random() * questions.length) ;
-    
-       ////////////////Generate a Random Question////////       
-       let pickRandomQuestion = questions[randNumb];
-              ////////////////display question on html//////////////////////////
-       $("#question").text(pickRandomQuestion[0]);
-       ///////////display answers on html////////
-       $("#index0").text(pickRandomQuestion[1][0]);
-       $("#index1").text(pickRandomQuestion[2][0]);
-       $("#index2").text(pickRandomQuestion[3][0]);
-       $("#index3").text(pickRandomQuestion[4][0]); 
-//////////////////////////////////////////////////////
+           var randNumb = Math.floor(Math.random() * questions.length);
+function splicer(){
+randNumb = Math.floor(Math.random() * questions.length);
 
-
-if (questions.length > 1){
+//////////////////
+if(questions.length > 0){
+    let pickRandomQuestion = questions[randNumb][0];  
+    let pickRelatedAnswer = questions[randNumb];  
     questions.splice(randNumb,1);
-    console.log(pickRandomQuestion[0]);
-    console.log(questions.length);
+  //  console.log(pickRelatedAnswer);
+    ////////////////display question on html//////////////////////////
+ $("#question").text(pickRandomQuestion);
+// ///////////display answers on html////////
+ $("#index0").text(pickRelatedAnswer[1][0]);
+ $("#index1").text(pickRelatedAnswer[2][0]);
+ $("#index2").text(pickRelatedAnswer[3][0]);
+ $("#index3").text(pickRelatedAnswer[4][0]); 
+ //////////////////////////////////////////////////////
+}
+else{  
+    ////////////////display question on html//////////////////////////
+$("#question").text("DONE");
+$("#index0").text("Score :");
+$("#index1").text("Correct Answer :");
+$("#index2").text("Wrong Answer :");
+$("#index3").text("Skipped :"); 
 
-                  ////////////////display question on html//////////////////////////
-                  $("#question").text(pickRandomQuestion[0]);
-                  ///////////display answers on html////////
-                  $("#index0").text(pickRandomQuestion[1][0]);
-                  $("#index1").text(pickRandomQuestion[2][0]);
-                  $("#index2").text(pickRandomQuestion[3][0]);
-                  $("#index3").text(pickRandomQuestion[4][0]); 
-           //////////////////////////////////////////////////////
 
-
-
-   
-   
+//////////////////////////////////////////////////////
+}
+return questions[randNumb];
 
 }
-else {
 
-    $("body").html("DONE")
-     
 
- 
-   
-    }
-}
+$("#test").on("click", function()
+{
+  console.log(splicer());
+});
 
 ///////OnClick///////////////////
 $("#start").on("click", function()
@@ -184,7 +142,7 @@ $("#start").on("click", function()
 splicer();
 });
 
-/////////////////////////////////
+////////////////////////////
     });
 
 
