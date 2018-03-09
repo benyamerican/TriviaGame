@@ -1,6 +1,5 @@
-$(document).ready(function() {
+$(document).ready(function(){
 
-    
     //////////PRACTICE///////////////////////////PRACTICE/////////////////
     //////////PRACTICE///////////////////////////PRACTICE/////////////////
     //////////PRACTICE///////////////////////////PRACTICE/////////////////
@@ -43,52 +42,15 @@ $(document).ready(function() {
          
             ];
     ////////////////Generate a Random number////////
-    var randNumb = Math.floor(Math.random() * questions.length);
+   // var randNumb = Math.floor(Math.random() * questions.length);
     /////////////////////////////////////////////////
     function splicer(){
-   // let questions;
-    randNumb = Math.floor(Math.random() * questions.length);
-    //////////////////////////////
-     
-    //////////////////////////////
-    // if(questions.length > 0){
-        let randomItem = questions[randNumb];
+   var randNumb = Math.floor(Math.random() * questions.length);
+        let x = questions[randNumb];
         
-      //  console.log(randNumb);
-       // console.log(randomItem[0]);
-        // $("#question").text(randomItem[0]);
-
-      //  console.log(randomItem[1][0],randomItem[2][0],randomItem[3][0],randomItem[1][0]);
-
-        // $("#index0").text(randomItem[1][0]);
-        // $("#index1").text(randomItem[2][0]);
-        // $("#index2").text(randomItem[3][0]);
-        // $("#index3").text(randomItem[1][0]);
-
-      // console.log(randomItem[1][1],randomItem[2][1],randomItem[3][1],randomItem[4][1]);
-
-      // $("#question").text(randomItem[0]);
         questions.splice(randNumb,1) ;
-        return randomItem;
-        
-    // }
-    // else{  
-       // console.log("DONE");
-        // $("#question").text("DONE");
 
-        // $("#index0").text('DONE');
-        // $("#index1").text('DONE');
-        // $("#index2").text('DONE');
-        // $("#index3").text('DONE');
-    //}
-    
-    };
-    ////////////////SHOWING THE PICKED QUESTION ON HTML///////
-   // let x = splicer();
-   
-    function printingOnPage(){
-        let x = splicer();
-
+        ///////////////SHOW ON THE HTML//////
         $("#question").text(x[0]);
 
         
@@ -98,64 +60,69 @@ $(document).ready(function() {
         $("#index2").text(x[3][0]);
         $("#index3").text(x[4][0]); 
 ///////////////////////////Capture right or wrong//////////////
-//////HERE NOT SURE WHY IT CAPTURES THE PREVIOUS VALUES TOO/////
+//////HERE NOT SURE WHY IT CAPTURES THE PREVIOUS VALUES AND THE CURRENT ALL TOGETHER/////
+//////////////////COMMENT OUT LINE 130 IF YOU WANT//////
 //////////WHEN ANSWERS ARE LOADED CLICK ON THE ANSWER/////
 //////////////////SEEEEEE??????????///////////why???.....
-
 //////////////capture answer 1///////////////////////////
         $("#index0").on("click",function(){
-            if (x[1][1] === true){console.log('It is true!')}
-            else{console.log('It is false!')}
+            if (x[1][1] === true){
+                console.log("It is true");
+                $("#index0").css("color", "green")}//console.log('It is true!')}
+            else{
+                $("#index0").css("color", "red");
+                console.log('It is false!')}
+
         });
         //////////////capture answer 2///////////////////////////
         $("#index1").on("click",function(){
-            if (x[2][1] === true){console.log('It is true!')}
-            else{console.log('It is false!')}
+            if (x[2][1] === true){
+                console.log('It is true!');
+                $("#index1").css("color", "green")
+        }
+            else{
+                $("#index1").css("color", "red");
+                console.log('It is false!')}
         });
         //////////////capture answer 3///////////////////////////
         $("#index2").on("click",function(){
-            if (x[3][1] === true){console.log('It is true!')}
-            else{console.log('It is false!')}
+            if (x[3][1] === true){
+                $("#index2").css("color", "green");
+                console.log('It is true!')}
+            else{
+                $("#index2").css("color", "red");
+                console.log('It is false!')}
         });
         //////////////capture answer 4///////////////////////////
         $("#index3").on("click",function(){
-            if (x[4][1] === true){console.log('It is true!')}
-            else{console.log('It is false!')}
+            if (x[4][1] === true){
+                $("#index3").css("color", "green")
+                console.log('It is true!')}
+            else{
+                $("#index3").css("color", "red");
+                console.log('It is false!')}
         });
-
-
-
-
      //   console.log(x[1][1],x[2][1],x[3][1],x[4][1]);
-
-    
-    }
-    ///////////////////////////////////////////////////////////
-    ////////////////END OF SPLICER
+     return randNumb;
+    };
+///////////////////////////////////////////////////////////
+    ////////////////END OF SPLICER//////////////////////////////
     /////////////////Logic of PracticeArray/////////////////
-
 ///////////////////////////////////////
 /////////////////printing Function/////////////////////
- 
-
-
 //////////////END OF TIMING STUFF//////////
 ////////////////////////////////////////////
     $("#test").on("click",function(){
         console.log('TestRun')
- 
-      
     });
     ///////OnClick///////////////////
     $("#start").on("click", function()
     {
        if (questions.length > 0){
-       printingOnPage();
-
-    
-       }
-       else {}
-       
+   splicer();
+      } else {
+           $('body').text('DONE then showing the results here')
+        }
     });
     ////////////////////////////
         });
