@@ -50,11 +50,11 @@ $(document).ready(function(){
         
         questions.splice(randNumb,1) ;
 
-        ///////////////SHOW ON THE HTML//////
+        
         $("#question").text(x[0]);
 
         
-
+///////////////SHOW ANSWERS RELATED TOTHE QUESTION ON THE PAGE//////
         $("#index0").text(x[1][0]);
         $("#index1").text(x[2][0]);
         $("#index2").text(x[3][0]);
@@ -68,17 +68,20 @@ $(document).ready(function(){
         $("#index0").on("click",function(){
             if (x[1][1] === true){
                 console.log("It is true");
-                $("#index0").css("color", "green")}//console.log('It is true!')}
+                $("#index0").css("color", "green");
+            }
+                //splicer(this)//console.log('It is true!')
             else{
                 $("#index0").css("color", "red");
-                console.log('It is false!')}
-
+                console.log('It is false!');
+               }
         });
         //////////////capture answer 2///////////////////////////
         $("#index1").on("click",function(){
             if (x[2][1] === true){
                 console.log('It is true!');
                 $("#index1").css("color", "green")
+                ;
         }
             else{
                 $("#index1").css("color", "red");
@@ -88,7 +91,8 @@ $(document).ready(function(){
         $("#index2").on("click",function(){
             if (x[3][1] === true){
                 $("#index2").css("color", "green");
-                console.log('It is true!')}
+                console.log('It is true!');
+                }
             else{
                 $("#index2").css("color", "red");
                 console.log('It is false!')}
@@ -97,7 +101,8 @@ $(document).ready(function(){
         $("#index3").on("click",function(){
             if (x[4][1] === true){
                 $("#index3").css("color", "green")
-                console.log('It is true!')}
+                console.log('It is true!');
+                }
             else{
                 $("#index3").css("color", "red");
                 console.log('It is false!')}
@@ -111,6 +116,27 @@ $(document).ready(function(){
 ///////////////////////////////////////
 /////////////////printing Function/////////////////////
 //////////////END OF TIMING STUFF//////////
+   //////////////start TIMING STUFF//////////
+   var time =3; 
+  var interval;//= setInterval(timerFunction, 1000);
+  function timerFunction(){
+       if( time > 0){
+       time--;
+       $('#timer').text('Time left : ' + time +' second');
+       }
+       else{
+           console.log('Time Up');
+           
+           splicer();
+           timeReset();
+       }
+       function timeReset(){
+           if(questions.length > 0 ){
+           time = 3;
+          }
+          else{clearInterval(interval);}
+       }
+   }
 ////////////////////////////////////////////
     $("#test").on("click",function(){
         console.log('TestRun')
@@ -119,9 +145,11 @@ $(document).ready(function(){
     $("#start").on("click", function()
     {
        if (questions.length > 0){
-   splicer();
+   interval = setInterval(timerFunction, 1000);
+   splicer(); 
       } else {
-           $('body').text('DONE then showing the results here')
+           $('body').text('DONE then showing the results here');
+          // timerFunction();
         }
     });
     ////////////////////////////
